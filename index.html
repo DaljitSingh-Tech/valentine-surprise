@@ -109,7 +109,7 @@
 
 <!-- Background Music -->
 <audio id="bgMusic" loop>
-    <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_7b1c1c2f3e.mp3?filename=romantic-music-110397.mp3" type="audio/mpeg">
+    <source src="https://cdn.pixabay.com/download/audio/2023/03/14/audio_6e3f3f1e4d.mp3?filename=romantic-love-144094.mp3" type="audio/mpeg">
 </audio>
 
 <!-- FIRST SCREEN -->
@@ -125,7 +125,7 @@
 <!-- SECOND SCREEN -->
 <div id="secondScreen" class="screen">
     <h2>Yay! ❤️</h2>
-    <p id="message">Congratulations, you are now officially Daljit's valentine!</p>
+    <p id="message">Congratulations, you are now officially Ravneet ❤️ Daljit forever!</p>
 </div>
 
 <script>
@@ -135,7 +135,7 @@
     const secondScreen = document.getElementById("secondScreen");
     const bgMusic = document.getElementById("bgMusic");
 
-    // Start music on first interaction (browser autoplay rules)
+    // Start music on first interaction
     function startMusic() {
         bgMusic.play().catch(() => {});
         document.removeEventListener("click", startMusic);
@@ -148,14 +148,36 @@
         secondScreen.style.display = "block";
     });
 
-    // NO BUTTON → Run away from cursor
+    // NO BUTTON → Funny dodging behavior
+    let noClickCount = 0;
+
     noBtn.addEventListener("mouseover", () => {
-        const x = Math.random() * (window.innerWidth - 200);
-        const y = Math.random() * (window.innerHeight - 200);
+        noClickCount++;
+
+        const x = Math.random() * (window.innerWidth - 150);
+        const y = Math.random() * (window.innerHeight - 150);
 
         noBtn.style.position = "absolute";
         noBtn.style.left = `${x}px`;
         noBtn.style.top = `${y}px`;
+
+        if (noClickCount === 4) {
+            const joke = document.createElement("div");
+            joke.textContent = "Seriously? You think you can catch me? 😂";
+            joke.style.position = "fixed";
+            joke.style.bottom = "20px";
+            joke.style.left = "50%";
+            joke.style.transform = "translateX(-50%)";
+            joke.style.background = "#fff0f5";
+            joke.style.padding = "10px 20px";
+            joke.style.borderRadius = "20px";
+            joke.style.color = "#e63950";
+            joke.style.fontWeight = "600";
+            joke.style.boxShadow = "0 5px 15px rgba(0,0,0,0.1)";
+            document.body.appendChild(joke);
+
+            setTimeout(() => joke.remove(), 3000);
+        }
     });
 
     // Floating hearts generator
